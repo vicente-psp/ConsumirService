@@ -12,15 +12,14 @@ import java.net.URL;
 public class ConsumirWS {
 
     private final String USER_AGENT = "Mozilla/5.0";
-    private final String apiKey = "apikey=hY00nJHHlTuCjVBz20EeM6QZKdhpGm4b";
     private String url = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?";
 
     // HTTP GET request
-    public String sendGet(String search) throws Exception {
-        if (search.equals("")) {
-            throw new Exception("Informe os parâmetros para a pesquisa.");
+    public String sendGet(String search, String apiKey) throws Exception {
+        if (search.equals("") || apiKey.equals("")) {
+            throw new Exception("Informe os parâmetros e a chave de acesso para a pesquisa.");
         }
-        this.url += this.apiKey + search;
+        this.url += apiKey + search;
         URL obj = new URL(this.url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
