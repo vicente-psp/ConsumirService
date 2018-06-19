@@ -4,7 +4,10 @@ import com.google.gson.Gson;
 import consumidor.ConsumirWS;
 import javax.swing.JOptionPane;
 import entidade.Viagem;
+import java.util.ArrayList;
+import modelo.OriginDestination;
 import util.EnumAeroporto;
+import util.LerArquivo;
 
 /**
  *
@@ -20,7 +23,7 @@ public class TestarSoftware {
         
         ConsumirWS cWS = new ConsumirWS();
 
-        
+        String key = "apikey=" + JOptionPane.showInputDialog("Informe a key");
         String origin = "&origin=" + EnumAeroporto.GYN;
         String destination = "&destination=" + EnumAeroporto.BSB;
         String departureDate = "&departure_date=2018-06-25";
@@ -29,18 +32,18 @@ public class TestarSoftware {
 
         System.out.println("Testing 1 - Send Http GET request");
         try {
-            String json = cWS.sendGet(search);
+            String json = cWS.sendGet(search, key);
             Gson gson = new Gson();
             Viagem v = gson.fromJson(json, Viagem.class);
             
-//            System.out.println("json" + json);
+            System.out.println("json" + json);
             
             
-            for (int i = 0; i < v.getResults().size(); i++) {
-                System.out.println("Companhia Aérea: " + v.getResults().get(i).getItineraries().get(0).getInbound().getFlights().get(0).getDepartsAt());
-//                System.out.println("Destino: " + v.getResultados().get(i).getDestination());
-//                System.out.println("Valor: " + v.getResultados().get(i).getPrice());
-            }
+//            for (int i = 0; i < v.getResults().size(); i++) {
+//                System.out.println("Companhia Aérea: " + v.getResults().get(i).getItineraries().get(0).getInbound().getFlights().get(0).getDepartsAt());
+////                System.out.println("Destino: " + v.getResultados().get(i).getDestination());
+////                System.out.println("Valor: " + v.getResultados().get(i).getPrice());
+//            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,  "Mensagem: " + e.getMessage() + "\nCausa: " + e.getCause() + "\nCausa: " + e.getSuppressed());
         }

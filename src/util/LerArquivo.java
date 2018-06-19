@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 import java.io.File;
 import java.io.FileReader;
 import modelo.OriginDestination;
-import util.EnumAeroporto;
 
 /**
  *
@@ -17,8 +16,8 @@ public class LerArquivo {
 //    String arquivo = diretorio + "flight-search-cache-origin-destination.csv.csv";
 
     public ArrayList<OriginDestination> recuperar(String arquivo) throws Exception {
-//        arquivo = "/arquivo/" + arquivo;
-        arquivo = "C:\\Users\\Vicente\\Desktop\\JAVA\\ConsumirService\\src\\arquivo\\" + arquivo;
+        
+        arquivo = "src/arquivo/" + arquivo;
         ArrayList<OriginDestination> lista = new ArrayList<>();
 
         try {
